@@ -1,68 +1,86 @@
 #ifndef SHELL_H
 #define SHELL_H
 
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
-#include <sys/wait.h>
+#include <unistd.h>
 #include <sys/types.h>
-#include <errno.h>
-#include <stddef.h>
+#include <sys/wait.h>
 #include <sys/stat.h>
-#include <signal.h>
+#include <time.h>
+#include <stdbool.h>
 
-int _putchar(char c);
-void _puts(char *str);
-int _strlen(char *s);
-char *_strdup(char *str);
-char *concat_all(char *name, char *sep, char *value);
-
-char **splitstring(char *str, const char *delim);
-void execute(char **argv);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-
+#define DELIM " \t\r\n\a"
+#define BUFSIZE 1024
 
 extern char **environ;
 
 /**
- * struct list_path - Linked list containing PATH directories
- * @dir: directory in path
- * @p: pointer to next node
+ * builtins - a struct to track builtins commands
+ *
+ * @env: first builtin command
+ * @exit: second builtin command
+ *
  */
-typedef struct list_path
+
+typedef struct builtin
 {
-	char *dir;
-	struct list_path *p;
-} list_path;
-
-
-char *_getenv(const char *name);
-list_path *add_node_end(list_path **head, char *str);
-list_path *linkpath(char *path);
-char *_which(char *filename, list_path *head);
+	char *env;
+	char *exit;
+} builtin;
 
 /**
- * struct mybuild - pointer to function with corresponding buildin command
- * @name: buildin command
- * @func: execute the buildin command
+ * state - a state that contains information about the shell.
+ *
+ * @f_exit: exit.
+ * @count: count of the executed command lines.
+ *
  */
-typedef struct mybuild
+
+typedef struct state
 {
-	char *name;
-	void (*func)(char **);
-} mybuild;
+	int f_exit;
+	int count;
+} state;
 
-void(*checkbuild(char **arv))(char **arv);
-int _atoi(char *s);
-void exitt(char **arv);
-void env(char **arv);
-void _setenv(char **arv);
-void _unsetenv(char **arv);
+/**
+ * struct flags - Represents various flags used by the shell.
+ * @interactive: Flag indicating whether the shell is in interactive mode.
+ */
 
-void freearv(char **arv);
-void free_list(list_path *head);
+struct flags
+{
+    bool interactive;
+};
 
+extern struct flags flg;
 
-#endif
+/* string_helpers */
+void string_pr(char *s);
+int _putchar(char s);
+int _strlen(char *str);
+char *_strchr(char *str, char ch);
+char *_strdup(char *str);
+int _strncmp(char *src, char *cmp, int n);
+int _strcmp(char *str1, char *str2);
 
+/* shell prototypes*/
+char **_strtok(char *line);
+void execute(char *cmd, char **args);
+int main(int ac, char **av, char *env[]);
+
+/* helper functions */
+void exit_func(char **args, char *line);
+void free_b(char **buf);
+char *_getpath(void);
+char *path_checker(char **path, char *command);
+int builtins(char **args, char *line);
+int builtin_checker(char **args, char *buffer);
+char *cat_path(char *path, char *cmd);
+void signal_handler(int num);
+void user_input(void);
+void env_print(void);
+
+#endif /* SHELL_H */
