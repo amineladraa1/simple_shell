@@ -18,7 +18,7 @@
 extern char **environ;
 
 /**
- * struct uiltin - a struct to track builtins commands
+ * struct builtin - a struct to track builtins commands
  *
  * @env: first builtin command
  * @exit: second builtin command
