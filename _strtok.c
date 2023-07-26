@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
-* tokenizer - creates a tokens from given input line
+* _strtok - creates a tokens from given input line
 * @line: line be tokenized
 * Return: array of strings
 */
