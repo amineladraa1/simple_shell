@@ -3,7 +3,7 @@
 /**
 * path_checker - find path in directories
 *
-* @path: path env 
+* @path: path env
 *
 * @command: user command
 *

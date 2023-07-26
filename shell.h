@@ -18,7 +18,7 @@
 extern char **environ;
 
 /**
- * builtins - a struct to track builtins commands
+ * struct uiltin - a struct to track builtins commands
  *
  * @env: first builtin command
  * @exit: second builtin command
@@ -32,7 +32,7 @@ typedef struct builtin
 } builtin;
 
 /**
- * state - a state that contains information about the shell.
+ * struct state - a state that contains information about the shell.
  *
  * @f_exit: exit.
  * @count: count of the executed command lines.
@@ -52,7 +52,7 @@ typedef struct state
 
 struct flags
 {
-    bool interactive;
+	bool interactive;
 };
 
 extern struct flags flg;
