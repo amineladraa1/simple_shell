@@ -53,6 +53,8 @@ void signal_handler(int num)
 /**
 * user_input - check interactive mode and print the $
 *
+* @flg: flag to track interactive mode
+*
 * Return: void
 */
 
