@@ -9,10 +9,10 @@
 * Return: 0 (success)
 */
 
-struct flags flg = {0};
 
 int main(int ac, char **av, char *env[])
 {
+	struct flags flg = {0};
 	struct state stt;
 	char *line = NULL, *pathcmd = NULL, *p = NULL;
 	size_t buffersize = 0;
@@ -27,7 +27,7 @@ int main(int ac, char **av, char *env[])
 		free_b(args);
 		free_b(paths);
 		free(pathcmd);
-		user_input();
+		user_input(&flg);
 		len = getline(&line, &buffersize, stdin);
 		if (len < 0)
 			break;

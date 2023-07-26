@@ -80,7 +80,7 @@ int builtins(char **args, char *line);
 int builtin_checker(char **args, char *buffer);
 char *cat_path(char *path, char *cmd);
 void signal_handler(int num);
-void user_input(void);
 void env_print(void);
+void user_input(struct flags *flg);
 
 #endif /* SHELL_H */

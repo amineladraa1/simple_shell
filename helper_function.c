@@ -56,12 +56,12 @@ void signal_handler(int num)
 * Return: void
 */
 
-void user_input(void)
+void user_input(struct flags *flg)
 {
 
 	if (isatty(STDIN_FILENO) == 1 && isatty(STDOUT_FILENO) == 1)
-		flg.interactive = 1;
+		flg->interactive = 1;
 
-	if (flg.interactive)
+	if (flg->interactive)
 		write(STDERR_FILENO, "$ ", 2);
 }
