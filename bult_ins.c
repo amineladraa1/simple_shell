@@ -11,7 +11,7 @@
 
 int builtins(char **args, char *line)
 {
-	struct builtin b = {"env", "exit"};
+	struct built b = {"env", "exit"};
 
 	if (_strcmp(*args, b.env) == 0)
 	{
