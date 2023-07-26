@@ -18,18 +18,18 @@
 extern char **environ;
 
 /**
- * struct builtin - a struct to track builtins commands
+ * struct built - a struct to track builtins commands
  *
  * @env: first builtin command
  * @exit: second builtin command
  *
  */
 
-typedef struct builtin
+typedef struct built
 {
 	char *env;
 	char *exit;
-} builtin;
+} built;
 
 /**
  * struct state - a state that contains information about the shell.
